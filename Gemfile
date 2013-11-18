@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
@@ -51,3 +52,8 @@ gem 'redis'
 gem 'puma'
 
 gem 'eventmachine'
+
+# Twitter CSS/SASS framework
+# gem 'bootstrap-sass','2.3.2.0'
+gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: 'master'
+# gem 'bootstrap-sass-rails'

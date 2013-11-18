@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SseTest</title>
+  <title>NtyGui</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
-
-<%= yield %>
-
+	<div>
+		<%= render "layouts/header" %>
+		<div class="container">
+			<% flash.each do |key,value| %>
+				<div class="alert alert-<%= key %>"><%= value %></div>
+			<% end %>
+			<%= yield %>
+			<%= render "layouts/footer" %>
+			<br/>
+			<%= debug(params) if Rails.env.development? %>
+			<% # signed_in? %>
+		</div>
+	</div>
 </body>
 </html>

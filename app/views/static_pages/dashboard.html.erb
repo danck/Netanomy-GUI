@@ -1,0 +1,60 @@
+<script type="text/javascript">
+$(function() {
+var source = new EventSource('/master_messages');
+
+// source.onmessage=function(event)
+//   {
+//   console.log(event);
+//   };
+
+source.addEventListener('INFO', function(e) {
+  $("#konsole").prepend(e.data + '<br />');
+  });
+
+source.addEventListener('FINISH', function(e) {
+  // Close something
+  });
+});
+
+</script>
+
+<div class="container">
+
+<div id="content">
+    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+        <li class="active"><a href="#dashboard" data-toggle="tab">Dashboard</a></li>
+        <li><a href="#results" data-toggle="tab">Results</a></li>
+        <li><a href="#configuration" data-toggle="tab">Configuration</a></li>
+        <li><a href="#help" data-toggle="tab">Help</a></li>
+    </ul>
+    <div id="my-tab-content" class="tab-content">
+        <div class="tab-pane active" id="dashboard">
+            <h3>Dashboard</h3>
+            <h3>Messages</h3>
+            <code>
+            	<div class="container" id="konsole" style="overflow-y:scroll; height:400px;">
+				</div>
+			</code>
+        </div>
+        <div class="tab-pane" id="results">
+            <h1>Results</h1>
+            <p>orange orange orange orange orange</p>
+        </div>
+        <div class="tab-pane" id="configuration">
+            <h1>Configuration</h1>
+            <p>yellow yellow yellow yellow yellow</p>
+        </div>
+        <div class="tab-pane" id="help">
+            <h1>Help</h1>
+            <p>green green green green green</p>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $('#tabs').tab();
+    });
+</script>    
+</div> <!-- container -->

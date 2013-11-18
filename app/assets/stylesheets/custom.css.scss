@@ -1,0 +1,95 @@
+/* www.getbootstrap.com */
+@import "bootstrap";
+
+
+$greyDarker: #a0a0a0;
+$stdBG: #fff; /*#FCFCE3;*/
+
+
+html {
+  overflow-y: scroll;
+  background-color: $stdBG;
+}
+
+body {
+  padding-top: 90px;
+  background-color: $stdBG;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+/* header */
+
+.top-bar {
+	/*background-color: #fff;*/
+	background-color: $stdBG;
+	opacity: 1;
+	margin-top: 0px;
+    border-top: 0px solid $greyDarker;
+    border-bottom: 1px solid $greyDarker;
+}
+
+#logo {
+	float: left;
+	margin-right: 10px;
+	font-size: 1.5em;
+	color: #fff;
+	text-transform: uppercase;
+	/*letter-spacing: -1px;*/
+	padding-top: 14px;
+	font-weight: bold;
+	line-height: 1;
+	&:hover {
+		color: #f0f0f0;
+		text-decoration: none;
+	}
+}
+
+/* Konsole */
+
+#konsole {
+	background-color: #111;
+	color: #fff;
+}
+
+/* footer */
+
+footer {
+	margin-top: 45px;
+	padding-top: 5px;
+	border-top: 1px solid #eaeaea;
+	color: #999;
+	a {
+		color: #555;
+		&:hover {
+			color: #ddd;
+		}
+	}
+
+	small {
+		float: left;
+	}
+
+	ul {
+		float: right;
+		list-style: none;
+			li {
+			float: left;
+			margin-left: 10px;
+		}
+	}
+}
