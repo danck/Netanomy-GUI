@@ -1,0 +1,56 @@
+<div id='comment_app'>
+
+<script type="text/javascript">
+$(function() {
+var source = new EventSource('/master_messages');
+
+// source.onmessage=function(event)
+//   {
+//   console.log(event);
+//   };
+
+source.addEventListener('INFO', function(e) {
+  $('body').after(e.data + '<br />');
+  });
+
+source.addEventListener('FINISH', function(e) {
+  // Close something
+  });
+});
+
+</script>
+  
+  <div id="comments_container">
+    <% @comments.each do |comment| %>
+      <div class='comment'>
+        <h1><%=comment.title%></h1>
+        <p><%=comment.content%></p>
+      </div>
+    <% end %>
+  </div>
+  <div id='see_newer'>
+  </div>
+</div>
+
+  <script type="text/template" id="comment_template">
+    <div class="comment">
+      <h1><%%- title %></h1>
+      <p><%%- content %></p>
+    </div>
+  </script>
+
+<div id='comment_form'>
+  <h3>Adddd comment</h3>
+  <%= form_tag(comments_path, method: "post") do %>
+    <input name='title' placeholder='Title'><br />
+    <textarea name='content' placeholder='Comment'></textarea>
+    <input type='submit' value='Save' />
+  <% end %>
+</div>
+rgag 
+  <%= link_to 'hallo.de', 'http://www.hallo.de' %>
+th tshsr 
+
+<%= form_tag('master_messages', method: "post") do %>
+    <input type='submit' value='Save' />
+<% end %>
