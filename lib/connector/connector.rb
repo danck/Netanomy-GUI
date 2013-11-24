@@ -21,7 +21,7 @@ class Connector #< ActionController::Base
 		@s.flush
 	end
 
-	def get_stream
+	def get_info_stream
 		return @info_out
 	end
 
@@ -49,13 +49,10 @@ class Connector #< ActionController::Base
 						rescue Interrupt, IOException, IOError
 							puts "FATAL: lost connection to master"
 						ensure
-							# response.stream.close
-
 							# s.shutdown if s != nil
 							# serv.shutdown if serv != nil
 						end
 					end
 			}
 		end
-
 end

@@ -9,7 +9,7 @@ class RealtimeController < ApplicationController
 	end
 	def master_messages
  		response.headers['Content-Type'] = 'text/event-stream'
-		stream = Connector.get_instance.get_stream
+		stream = Connector.get_instance.get_info_stream
 
 		begin
 		loop do
