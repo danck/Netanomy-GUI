@@ -11,11 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131116193149) do
+ActiveRecord::Schema.define(version: 20140102142814) do
 
   create_table "comments", force: true do |t|
     t.string   "title"
     t.string   "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "domains", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "plugins", force: true do |t|
+    t.string   "name"
+    t.integer  "pid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "requests", force: true do |t|
+    t.string   "plugin"
+    t.string   "domain"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

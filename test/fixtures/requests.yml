@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  plugin: MyString
+  domain: MyString
+
+two:
+  plugin: MyString
+  domain: MyString

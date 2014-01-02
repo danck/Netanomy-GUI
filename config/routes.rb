@@ -3,6 +3,7 @@ SseTest::Application.routes.draw do
   post 'master_messages' => 'realtime#master_messages'
   get 'master_messages' => 'realtime#master_messages'
 
+  post '/' => 'realtime#run_test'
   root 'static_pages#dashboard'
 
   # get 'realtime/comments' => 'realtime#comments', as: :realtime_comments

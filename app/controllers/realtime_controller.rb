@@ -7,6 +7,7 @@ class RealtimeController < ApplicationController
 	def connect
 		# sse = Connector.get_instance.get_stream
 	end
+
 	def master_messages
  		response.headers['Content-Type'] = 'text/event-stream'
 		stream = Connector.get_instance.get_info_stream
@@ -26,6 +27,12 @@ class RealtimeController < ApplicationController
 		ensure
 			response.stream.close
 		end
+	end
+
+	def run_test
+		sender = Connector.get_instance
+		sender.send "#{params[:request][:plugin]} #{params[:request][:domain]}\n"
+		redirect_to root_path
 	end
 
 	# before_action :setup_stream
