@@ -9,30 +9,47 @@ class RealtimeController < ApplicationController
 	end
 
 	def master_messages
- 		response.headers['Content-Type'] = 'text/event-stream'
-		stream = Connector.get_instance.get_info_stream
+		@out_stream, @in_stream = IO.pipe
 
-		begin
-		loop do
-			stream.each_line do |line| 
+
+ 		response.headers['Content-Type'] = 'text/event-stream'
+		Connector.get_instance.register(self)
+
+		while true do
+			begin
+			@out_stream.each_line do |line| 
 				response.stream.write("event: INFO\n")
 				data = line
 				puts "##### Publishing: #{data}"
 				response.stream.write("data: #{data}\n\n")
 			end
-			sleep 1
+			rescue => ex
+				Connector.get_instance.unregister self
+				puts "########### IOERROR"
+				break;
+
+			# ensure
+			# 	puts "########### IOERROR 2.0"
+			# 	response.body = []
+			# 	# response.stream.close
+			# 	# @@running = false
+			end
 		end
-		rescue IOError
-			puts "########### IOERROR"
-		ensure
-			response.stream.close
-		end
+
+		render :nothing => true
 	end
 
 	def run_test
 		sender = Connector.get_instance
-		sender.send "#{params[:request][:plugin]} #{params[:request][:domain]}\n"
+		sender.send "#{params[:request][:plugin]} #{params[:request][:domain]}"
 		redirect_to root_path
+	end
+
+	# Callback fuer Connector
+	def feed msg
+		if @in_stream
+			@in_stream << msg
+		end
 	end
 
 	# before_action :setup_stream

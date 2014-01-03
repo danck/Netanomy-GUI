@@ -1,5 +1,6 @@
 # require 'connector/sender'
 # require 'connector/receiver'
+require 'set'
 
 # Interface for the connection to the 'Master' program
 class Connector #< ActionController::Base
@@ -21,13 +22,23 @@ class Connector #< ActionController::Base
 		@s.flush
 	end
 
-	def get_info_stream
-		return @info_out
+	# def get_info_stream
+	# 	return @info_out
+	# end
+
+	def register listener
+		@listener_set.add listener
+	end
+
+	def unregister listener
+		@listener_set.delete listener
 	end
 
 	private
 
 		def initialize
+			@listener_set = Set.new
+
 			puts "Hi, this is Connector startup"
 
 			# The socket that talks to master man
@@ -44,7 +55,7 @@ class Connector #< ActionController::Base
 					loop do
 						begin @s.each_line do |line|
 								puts "Ich bekam: #{line}"
-								@info_in << line
+								feed_listeners line
 							end
 						rescue Interrupt, IOException, IOError
 							puts "FATAL: lost connection to master"
@@ -54,5 +65,11 @@ class Connector #< ActionController::Base
 						end
 					end
 			}
+		end
+
+		def feed_listeners msg
+			@listener_set.each do |listeners|
+				listeners.feed msg
+			end
 		end
 end

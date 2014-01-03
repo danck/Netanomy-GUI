@@ -24,7 +24,7 @@ end
 Thread.new do
 	prng = Random.new
 	loop do
-		seconds = prng.rand(10)
+		seconds = prng.rand(5)
 		puts "sleeping #{seconds} seconds"
 		sleep seconds
 		msg = "#{Time.now}: Blaa Nachricht"
