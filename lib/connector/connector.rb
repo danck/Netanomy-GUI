@@ -18,7 +18,7 @@ class Connector #< ActionController::Base
 
 	def send msg
 		# @@sender.send msg
-		@s.print msg + "\n"
+		puts @s.send msg + "\n\0", 0
 		@s.flush
 	end
 
